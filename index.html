@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Candidatura maestrías 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE work: a briefing for senior recommenders, formal, exact, easy to scan
+   IDEA the dossier a candidate hands to referees: the case on one sheet, then the evidence they can cite
+   PICTURE the thesis as three large scales (country, family, decision) running across the first screen
+   COLOUR viridis, blue range: white ground, deep viridis blue for bands, teal for what matters, navy ink
+   TYPE Schibsted Grotesk 700 for titles, 400 for text
+   LAYOUT title and summary across the top, three scales full width; then evidence, letter guide, universities in bands */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#0e1428);--ink:light-dark(#141a33,#e8edf6);--panel:light-dark(#eef3f8,#162043);--rule:light-dark(#c8d3e0,#2d3b66);--soft:light-dark(#4a5672,#a3b2cc);--brick:light-dark(#31688e,#62b0dc);--brickbg:light-dark(#e1eef2,#123345);--teal:light-dark(#1f8a85,#3fc1b5);--deep:#2c3b78}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Schibsted Grotesk",system-ui,sans-serif;overflow-x:clip}
+.band{padding-block:clamp(28px,4vw,56px);padding-left:max(5vw,16px);padding-right:max(5vw,16px)}
+.wrap{max-width:1240px;margin:0 auto}
+h1{font-size:clamp(32px,4.6vw,50px);line-height:1.05;letter-spacing:-.02em;margin:0 0 14px;text-wrap:balance;font-weight:700}
+h2{font-size:clamp(24px,2.8vw,32px);line-height:1.1;letter-spacing:-.015em;margin:0 0 18px;font-weight:700;text-wrap:balance}
+h3{font-size:19px;margin:0 0 6px;font-weight:700}
+p{margin:0 0 12px;max-width:70ch}
+.lead{font-size:18px;max-width:64ch}
+.muted{color:var(--soft);font-size:14px}
+.top{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:32px;align-items:end;margin-bottom:28px}
+.facts{border-top:2px solid var(--ink)}
+.facts div{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--rule)}
+.facts b{text-align:right}
+.thesis{background:var(--deep);color:#ffffff;padding:clamp(20px,3vw,34px)}
+.thesis q{display:block;font-size:clamp(20px,2.4vw,28px);line-height:1.25;font-weight:500;margin-bottom:24px;quotes:none;max-width:40ch}
+.scales{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid rgba(255,255,255,.28)}
+.scales div{padding:18px 20px 4px 0}
+.scales div+div{padding-left:20px;border-left:1px solid rgba(255,255,255,.28)}
+.scales .n{font-size:clamp(34px,4vw,48px);font-weight:700;line-height:1;color:#5ec9b8;margin-bottom:10px}
+.scales p{font-size:15px;color:#d6def0}
+.scroll{overflow-x:auto}
+nav.scroll{display:flex;gap:6px;flex-wrap:nowrap;padding:10px max(5vw,16px);background:#31688e}
+nav a{flex:none;color:#fff;text-decoration:none;padding:8px 12px;border-radius:3px;font-size:15px}
+nav a:hover,nav a:focus-visible{background:rgba(0,0,0,.18);outline:none}
+@media(min-width:900px){nav.scroll{position:sticky;top:0;z-index:5}}
+.cols3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.scale{border-top:2px solid var(--ink);padding-top:12px}
+.scale .n{font-size:40px;font-weight:700;line-height:1;color:var(--brick);margin-bottom:8px}
+.timeline{border-top:2px solid var(--ink)}
+.timeline div{display:grid;grid-template-columns:8em minmax(0,1fr);gap:16px;padding:10px 0;border-bottom:1px solid var(--rule)}
+.timeline b{white-space:nowrap}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:36px}
+.alt{background:var(--panel)}
+blockquote{margin:0 0 12px;padding:10px 0 10px 16px;border-left:3px solid var(--brick);font-size:17px}
+table{border-collapse:collapse;width:100%}
+.ev{background:var(--panel);border-top:3px solid var(--ink)}
+.alt .ev{background:transparent}
+.ev th,.ev td{padding:12px 12px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}
+.ev thead th{font-size:15px;border-bottom:2px solid var(--ink)}
+.ev tbody th{width:20%;font-weight:700}
+.ev td.use{width:34%;color:var(--soft);font-size:15px}
+.steps{counter-reset:s;border-top:2px solid var(--ink)}
+.steps div{display:grid;grid-template-columns:2.4em minmax(0,1fr);gap:12px;padding:12px 0;border-bottom:1px solid var(--rule)}
+.steps div::before{counter-increment:s;content:counter(s);font-size:24px;font-weight:700;color:var(--brick);line-height:1.1}
+.phr{border-top:2px solid var(--ink)}
+.phr div{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--rule)}
+.phr span{font-size:16px}
+.phr button{flex:none;font:inherit;font-size:14px;min-height:44px;padding:6px 12px;border:1px solid var(--ink);background:transparent;color:var(--ink);border-radius:3px;cursor:pointer}
+.phr button:focus-visible{outline:3px solid var(--brick);outline-offset:2px}
+ul{margin:0 0 12px;padding-left:1.1em}
+li{margin-bottom:7px}
+.no li::marker{content:"×  ";color:var(--teal)}
+.map{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) minmax(0,.85fr);gap:0;background:var(--panel);border-top:3px solid var(--ink);margin-bottom:28px}
+.map>section{padding:20px 22px 22px;position:relative}
+.map>section+section{border-left:1px solid var(--rule)}
+.map>section:nth-of-type(-n+2)::after{content:"";position:absolute;right:-11px;top:50%;width:20px;height:20px;background:var(--panel);border-top:2px solid var(--brick);border-right:2px solid var(--brick);transform:translateY(-50%) rotate(45deg);z-index:2}
+.map h3{font-size:17px;margin-bottom:12px}
+.grp{border-top:1px solid var(--rule);padding:9px 0}
+.grp b{display:block;font-size:15px}
+.grp span{display:block;font-size:14px;color:var(--soft);line-height:1.45}
+.path{display:flex;flex-wrap:wrap;gap:4px 0;font-size:14px;color:var(--soft)}
+.path i{font-style:normal}
+.path i+i::before{content:"→";color:var(--brick);margin:0 6px}
+.path i:last-child{color:var(--ink);font-weight:700}
+.loopfig{position:relative;width:100%;max-width:480px;margin:0 auto;aspect-ratio:470/360}
+.loopfig svg{position:absolute;inset:0;width:100%;height:100%}
+.loopfig text{font-family:"Schibsted Grotesk",system-ui,sans-serif;fill:var(--ink)}
+.go{border-top:1px solid var(--rule);padding:10px 0}
+.go small{display:block;color:var(--soft);font-size:13px}
+.go b{font-size:16px;line-height:1.3}
+.go.gap b{color:var(--teal)}
+.msgs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--rule);grid-column:1/-1;background:var(--brickbg)}
+.msgs div{padding:14px 22px;font-size:15px}
+.msgs div+div{border-left:1px solid var(--rule)}
+.msgs b{color:var(--brick);margin-right:6px}
+@media(max-width:860px){.map{grid-template-columns:minmax(0,1fr)}.map>section+section{border-left:0;border-top:1px solid var(--rule)}.map>section:nth-of-type(-n+2)::after{right:auto;left:50%;top:auto;bottom:-11px;transform:translateX(-50%) rotate(135deg)}.msgs{grid-template-columns:minmax(0,1fr)}.msgs div+div{border-left:0;border-top:1px solid var(--rule)}}
+.cvx{border-top:2px solid var(--ink)}
+.cvx>div{display:grid;grid-template-columns:8.5em minmax(0,1fr);gap:18px;padding:14px 0;border-bottom:1px solid var(--rule)}
+.cvx .yr{font-weight:700;color:var(--brick);white-space:nowrap;font-size:15px}
+.cvx h4{margin:0;font-size:17px}
+.cvx .org{color:var(--soft);font-size:15px;margin-bottom:6px}
+.cvx ul{margin:0;padding-left:1.1em}
+.cvx li{font-size:15px;margin-bottom:4px}
+.side h3{margin-top:22px}
+.side h3:first-child{margin-top:0}
+.side li{font-size:15px}
+a{color:var(--brick)}
+footer{font-size:14px;color:var(--soft)}
+@media(max-width:860px){.top,.two{grid-template-columns:minmax(0,1fr);gap:20px}.cols3{grid-template-columns:minmax(0,1fr);gap:18px}}
+@media(max-width:600px){.cvx>div{grid-template-columns:minmax(0,1fr);gap:4px}table{font-size:13px}.scales{grid-template-columns:minmax(0,1fr)}.scales div+div{padding-left:0;border-left:0;border-top:1px solid rgba(255,255,255,.28)}.timeline div{grid-template-columns:minmax(0,1fr);gap:2px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px}.stack th,.stack td{display:block;border:0;padding:3px 0;width:auto!important}.stack td::before{content:attr(data-l);display:block;font-weight:700;color:var(--ink);font-size:13px}}
+</style>
+</head>
+<body>
+
+<section class="band"><div class="wrap">
+  <div class="top">
+    <div>
+      <h1>Mi candidatura a maestrías en políticas públicas, ingreso 2027</h1>
+      <p class="lead">Gracias por acompañar esta aplicación. Aquí está, en una sola página, cómo me estoy presentando ante los comités: la idea central, la evidencia que la respalda y lo que una carta puede aportar para que el conjunto sea coherente.</p>
+    </div>
+    <div class="facts">
+      <div><span>Alcance</span><b>Red global y oficinas de América Latina</b></div>
+      <div><span>Cargo actual</span><b>Analista Jefe, PNUD Colombia</b></div>
+      <div><span>Experiencia</span><b>10 años profesionales, más 4 antes del grado</b></div>
+      <div><span>Cartas en</span><b>Inglés</b></div>
+    </div>
+  </div>
+  <div class="map" aria-label="Mapa de mi candidatura">
+    <section>
+      <h3>De dónde vengo: 10 años profesionales y 4 antes del grado</h3>
+      <div class="grp"><b>Academia y docencia</b><span>Asistente de investigación y monitor, reconocido como el mejor monitor por evaluación de los estudiantes (2014 a 2017). Profesor de economía e investigador junior en el Externado (2018 a 2020). Comité evaluador de la Revista de Economía Institucional. Beca y ponencia en LASA 2019.</span></div>
+      <div class="grp"><b>Debate y comunidad</b><span>Director de la revista Divergencia de la Facultad de Economía (2014 a 2017) y creador de Radio Divergencia. Hoy convoca la Comunidad de Datos del PNUD Colombia.</span></div>
+      <div class="grp"><b>Estado e instituciones</b><span>Unidad de Trabajo Legislativo del Senado (2017). Instituto de Ciencia Política (2018). DANE: estadística oficial de empleo, informalidad y pobreza (2020 a 2021).</span></div>
+      <div class="grp"><b>Sistema de Naciones Unidas, PNUD (2021 a hoy)</b>
+        <div class="path"><i>Consultor de estadística</i><i>Economista, gestión de datos</i><i>Analista Jefe</i></div>
+        <span style="margin-top:4px">Lidera la estrategia de datos de la oficina y la articula con la red global del PNUD (Data Champions) y con oficinas de toda América Latina y África. Trabajo con la Ford School de Michigan y HDRO.</span></div>
+    </section>
+    <section>
+      <h3>Lo que conecta todo: el ciclo de una política</h3>
+      <div class="loopfig"><svg viewBox="-8 0 470 360" role="img" aria-label="Ciclo: medir, modelar, decidir, ver cómo responde la gente, y volver a medir">
+        <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--soft)"/></marker><marker id="ahb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--teal)"/></marker></defs>
+        <circle cx="220" cy="180" r="105" fill="none" stroke="var(--rule)" stroke-width="1.5"/>
+        <path d="M 255.9 81.3 A 105 105 0 0 1 318.7 144.1" fill="none" stroke="var(--soft)" stroke-width="2.5" marker-end="url(#ah)"/>
+        <path d="M 318.7 215.9 A 105 105 0 0 1 255.9 278.7" fill="none" stroke="var(--teal)" stroke-width="3.5" marker-end="url(#ahb)"/>
+        <path d="M 184.1 278.7 A 105 105 0 0 1 121.3 215.9" fill="none" stroke="var(--soft)" stroke-width="2.5" marker-end="url(#ah)"/>
+        <path d="M 121.3 144.1 A 105 105 0 0 1 184.1 81.3" fill="none" stroke="var(--soft)" stroke-width="2.5" marker-end="url(#ah)"/>
+        <text x="220" y="162" text-anchor="middle" font-size="17" font-weight="700">Una población</text>
+        <text x="220" y="188" text-anchor="middle" font-size="17" font-weight="700">que envejece, migra</text>
+        <text x="220" y="214" text-anchor="middle" font-size="17" font-weight="700">y responde</text>
+        <circle cx="220" cy="75" r="7" fill="var(--ink)"/><text x="220" y="54" text-anchor="middle" font-size="19" font-weight="700">Medir</text><text x="220" y="30" text-anchor="middle" font-size="15" style="fill:var(--soft)">DANE, pobreza multidimensional</text>
+        <circle cx="325" cy="180" r="7" fill="var(--ink)"/><text x="338" y="176" font-size="19" font-weight="700">Modelar</text><text x="338" y="198" font-size="15" style="fill:var(--soft)">microsimulación</text>
+        <circle cx="220" cy="285" r="9" fill="var(--teal)"/><text x="220" y="318" text-anchor="middle" font-size="19" font-weight="700" style="fill:var(--teal)">Decidir</text><text x="220" y="340" text-anchor="middle" font-size="15" style="fill:var(--teal)">aquí está lo que me falta</text>
+        <circle cx="115" cy="180" r="7" fill="var(--ink)"/><text x="102" y="176" text-anchor="end" font-size="19" font-weight="700">Responder</text><text x="102" y="198" text-anchor="end" font-size="15" style="fill:var(--soft)">incentivos</text>
+      </svg></div>
+    </section>
+    <section>
+      <h3>Hacia dónde voy</h3>
+      <div class="go gap"><small>Lo que me falta</small><b>Liderar la decisión: negociación política, finanzas públicas y comportamiento</b></div>
+      <div class="go"><small>2027 a 2028</small><b>Maestría en políticas públicas o demografía</b></div>
+      <div class="go"><small>En cinco años</small><b>Economista líder de pobreza y equidad en una institución multilateral</b></div>
+      <div class="go"><small>A largo plazo, una de tres rutas</small><b>Director del DANE</b><span style="display:block;font-size:14px;color:var(--soft);margin-top:4px">o liderar la agenda de demografía, elección pública y políticas públicas en la OCDE, el Banco Mundial o el BID</span><span style="display:block;font-size:14px;color:var(--soft);margin-top:2px">o dirigir una cartera de la Oficina del Informe de Desarrollo Humano del PNUD (HDRO)</span></div>
+    </section>
+    <div class="msgs">
+      <div><b>1</b>Lidera, no solo analiza.</div>
+      <div><b>2</b>Su siguiente paso es de liderazgo, no otra especialización técnica.</div>
+      <div><b>3</b>10 años de experiencia profesional, más 4 antes de graduarse en la academia y la docencia.</div>
+    </div>
+  </div>
+  <div class="thesis">
+    <q>Policies are designed for a population that moves: it ages, it migrates, and it responds to incentives. I want to lead the institutions that have to anticipate that movement.</q>
+    <div class="scales">
+      <div><div class="n">País</div><h3>Transición demográfica</h3><p>Colombia envejece, la migración venezolana transformó el mercado laboral y el bono demográfico se agota. Más de la mitad de los ocupados es informal (54,5%, DANE, julio a septiembre de 2026).</p></div>
+      <div><div class="n">Familia</div><h3>Choques y protección</h3><p>Una misma pérdida deja a un hogar protegido y a otro expuesto, según su ingreso, sus decisiones previas y su acceso a la protección social.</p></div>
+      <div><div class="n">Decisión</div><h3>Incentivos y comportamiento</h3><p>Una política funciona según los incentivos que crea. Por eso me interesan el diseño de mecanismos y la economía del comportamiento, no solo la medición.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<nav class="scroll" aria-label="Secciones">
+  <a href="#trayectoria">Trayectoria</a>
+  <a href="#cv">Hoja de vida</a>
+  <a href="#comite">Dudas del comité</a>
+  <a href="#evidencia">Evidencia</a>
+  <a href="#carta">Una carta fuerte</a>
+  <a href="#ingles">Lenguaje en inglés</a>
+  <a href="#universidades">Universidades</a>
+</nav>
+
+<section class="band" id="trayectoria"><div class="wrap">
+  <h2>Del dato a la decisión, desde 2014</h2>
+  <div class="two">
+    <div class="timeline">
+      <div><b>2014 a 2017</b><span>Antes del grado: director de la revista Divergencia de la Facultad de Economía y creador de Radio Divergencia, asistente de investigación, monitor y Unidad de Trabajo Legislativo del Senado. Economista del Externado en 2017.</span></div>
+      <div><b>2017 a 2018</b><span>Maestría en Gerencia para el Desarrollo, con distinción: flujos migratorios venezolanos en la estructura laboral colombiana. Instituto de Ciencia Política.</span></div>
+      <div><b>2018 a 2020</b><span>Profesor de economía e investigador junior del Observatorio de Desarrollo y Política Social del Externado. Comité evaluador de la Revista de Economía Institucional. Maestría en Economía, tesis en curso sobre envejecimiento. LASA 2019.</span></div>
+      <div><b>2020 a 2021</b><span>DANE: estadística oficial de empleo, informalidad, ingresos y pobreza, con insumos para ministerios, Congreso, Presidencia, OCDE, Banco Mundial y BID.</span></div>
+      <div><b>2021 a 2022</b><span>PNUD Colombia: consultor de estadística en desarrollo humano y luego economista de gestión de datos del área de pobreza, protección social e inclusión productiva.</span></div>
+      <div><b>2022 a hoy</b><span>Analista Jefe de Estrategia de Datos, Inteligencia Artificial y Transformación Digital, articulado con la red global del PNUD y con oficinas de América Latina. Informe Nacional de Desarrollo Humano 2024 e Índice de Relacionamiento con la Naturaleza.</span></div>
+    </div>
+    <div>
+      <h3>Lo que me falta y por qué un MPP</h3>
+      <p>Tengo la formación técnica. Lo que he tenido que improvisar es lo que ocurre después del análisis: la negociación política, las respuestas de comportamiento y las decisiones de finanzas públicas que determinan si una política se implementa.</p>
+      <blockquote>Another economics degree would sharpen what I already do well; the MPP would build what I have had to improvise.</blockquote>
+      <h3 style="margin-top:18px">Por qué ahora</h3>
+      <p>La ventana demográfica de Colombia se cierra mientras la mía se abre: pasé de producir análisis a liderar una estrategia y participar en decisiones institucionales.</p>
+      <h3 style="margin-top:18px">Hacia dónde voy</h3>
+      <p>En cinco años, economista líder de pobreza y equidad en una institución multilateral, como el Banco Mundial. A largo plazo, una de tres rutas con el mismo hilo, la población y las decisiones públicas: dirigir el DANE; liderar la agenda de demografía, elección pública y políticas públicas en la OCDE, el Banco Mundial o el BID; o dirigir una cartera de la Oficina del Informe de Desarrollo Humano del PNUD (HDRO).</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="band" id="cv"><div class="wrap">
+  <h2>Hoja de vida: 10 años de experiencia profesional y 4 antes del grado</h2>
+  <p class="lead">Economista que lidera la estrategia de datos, inteligencia artificial y transformación digital del PNUD Colombia y la articula con la red global del PNUD y con oficinas de toda América Latina. Su trabajo se centra en la medición del desarrollo humano, la pobreza multidimensional, el mercado laboral y la población.</p>
+  <div class="two" style="margin-top:22px">
+    <div class="cvx">
+      <div><span class="yr">2022 a hoy</span><div><h4>Analista Jefe, Estrategia de Datos, Inteligencia Artificial y Transformación Digital</h4><div class="org">PNUD Colombia</div><ul>
+        <li>Función transversal para las cuatro áreas de la oficina: pobreza y desigualdad, desarrollo sostenible, gobernanza y paz.</li>
+        <li>Coordina equipos de economistas, científicos de datos, desarrolladores y especialistas en información geográfica; asesora a la gerencia y a los equipos de programa.</li>
+        <li>Lideró el equipo de datos del Informe Nacional de Desarrollo Humano 2024 y lidera la medición colombiana del Índice de Relacionamiento con la Naturaleza, con la Ford School de Michigan y HDRO.</li>
+        <li>Miembro de la Red Global de Data Champions del PNUD; trabajo con oficinas del PNUD de América Latina y África, incluida la contratación de servicios de datos con alcance regional.</li>
+      </ul></div></div>
+      <div><span class="yr">2021 a 2022</span><div><h4>Economista, Asociado Técnico en Gestión de Datos</h4><div class="org">PNUD Colombia, Área de Pobreza, Protección Social e Inclusión Productiva</div><ul>
+        <li>Análisis de pobreza monetaria y multidimensional, informalidad, desigualdad y cobertura de la protección social.</li>
+        <li>Talleres para equipos del PNUD y socios institucionales.</li>
+      </ul></div></div>
+      <div><span class="yr">2021</span><div><h4>Consultor de Estadística e Investigación</h4><div class="org">PNUD Colombia, Proyecto de Estudios de Desarrollo Humano</div></div></div>
+      <div><span class="yr">2020 a 2021</span><div><h4>Economista, analista de mercado laboral y pobreza</h4><div class="org">DANE</div><ul>
+        <li>Estadística oficial de empleo, informalidad, ingresos y pobreza.</li>
+        <li>Insumos para ministerios, Congreso, Presidencia, OCDE, Banco Mundial y BID.</li>
+      </ul></div></div>
+      <div><span class="yr">2018 a 2020</span><div><h4>Profesor de Economía e Investigador Junior</h4><div class="org">Universidad Externado de Colombia, Facultad de Economía</div><ul>
+        <li>Cursos de pregrado en economía.</li>
+        <li>Investigación en el Observatorio de Desarrollo y Política Social: pobreza, política social, mercado laboral y migración; microsimulación con COLMOD.</li>
+        <li>Comité evaluador de la Revista de Economía Institucional.</li>
+      </ul></div></div>
+      <div><span class="yr">2018</span><div><h4>Economista</h4><div class="org">Instituto de Ciencia Política</div></div></div>
+    </div>
+    <div>
+      <div class="cvx">
+        <div><span class="yr">2014 a 2017</span><div><h4>Antes del grado: cuatro años de experiencia</h4><div class="org">Universidad Externado de Colombia y otras instituciones</div><ul>
+          <li>Director de la revista Divergencia, revista trimestral de la Facultad de Economía, y creador de Radio Divergencia.</li>
+          <li>Asistente de investigación en derecho y economía, desarrollo institucional y política pública.</li>
+          <li>Monitor, reconocido como el mejor monitor por evaluación de los estudiantes.</li>
+          <li>Unidad de Trabajo Legislativo del Senado (2017); Director Nacional de Comunicaciones de FENADECO (2015); colaborador de investigación de la Revista Supuestos, Universidad de los Andes (2015).</li>
+        </ul></div></div>
+      </div>
+      <div class="side" style="margin-top:24px">
+        <h3>Formación</h3>
+        <ul>
+          <li>Maestría en Gerencia para el Desarrollo, Universidad Externado (2018), con distinción. Tesis: flujos migratorios venezolanos en la estructura laboral colombiana, 2014 a 2019.</li>
+          <li>Maestría en Economía, Universidad Externado: cursos terminados; tesis en curso sobre envejecimiento, pobreza y protección social.</li>
+          <li>Economista, Universidad Externado (2017).</li>
+        </ul>
+        <h3>Becas y redes</h3>
+        <ul>
+          <li>Beca de investigación de OPHI, escuela de verano sobre medición de pobreza multidimensional (2023).</li>
+          <li>Beca de investigación de LASA, XXXVII Congreso Internacional, Boston (2019).</li>
+          <li>Red Global de Data Champions del PNUD.</li>
+        </ul>
+        <h3>Publicaciones y productos selectos</h3>
+        <ul>
+          <li>Informe Nacional de Desarrollo Humano de Colombia 2024, PNUD: líder del equipo de datos.</li>
+          <li>Índice de Pobreza Multidimensional como estrategia para medir el ODS 1; informalidad y pobreza multidimensional; inclusión financiera de microempresas; Data-Driven Business. PNUD Colombia.</li>
+          <li>Financiamiento para el desarrollo desde el sector financiero privado colombiano, PNUD Colombia (2025).</li>
+        </ul>
+        <h3>Idiomas</h3>
+        <p>Español nativo, inglés C1, francés B2, portugués B2, italiano B1.</p>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="band alt" id="comite"><div class="wrap">
+  <h2>Tres dudas del comité que una carta resuelve mejor que mis ensayos</h2>
+  <p>En la sesión individual con admisiones de Princeton me señalaron tres riesgos de mi perfil. Una carta los despeja con más autoridad que mis propios textos, porque viene de quien me ha visto trabajar.</p>
+  <div class="cols3" style="margin-top:20px">
+    <div class="scale"><div class="n">1</div><h3>"Parece demasiado técnico"</h3><p>Sirve más un ejemplo de liderazgo que una descripción de métodos: un equipo coordinado, una conversación con un gobierno, una decisión que cambió por el trabajo.</p></div>
+    <div class="scale"><div class="n">2</div><h3>"¿Por qué no otra maestría en economía?"</h3><p>Una frase sobre por qué mi siguiente paso es de liderazgo y no de especialización tiene mucho peso viniendo de un tercero.</p></div>
+    <div class="scale"><div class="n">3</div><h3>"¿Cuánta experiencia real tiene?"</h3><p>Además de 10 años profesionales, tengo 4 antes del grado: Divergencia, la asistencia de investigación y las monitorías; luego vino la docencia. Quien me conoció entonces puede atestiguarlo.</p></div>
+  </div>
+</div></section>
+
+<section class="band" id="evidencia"><div class="wrap">
+  <h2>Evidencia que puede citar con tranquilidad</h2>
+  <p>Todo lo que aparece aquí está verificado. Puede usar lo que usted conozca de primera mano; si quiere mencionar algo que no esté en esta tabla, con gusto se lo confirmo.</p>
+  <div class="scroll">
+    <table class="ev stack" id="ev"></table>
+  </div>
+</div></section>
+
+<section class="band alt" id="carta"><div class="wrap">
+  <h2>Cómo se ve una carta que pesa en un comité</h2>
+  <div class="two">
+    <div>
+      <div class="steps">
+        <div><span><b>La relación.</b> Desde cuándo y en qué rol me conoce, y con qué frecuencia trabajamos juntos.</span></div>
+        <div><span><b>La comparación.</b> Dónde me ubica frente a otras personas que usted ha supervisado o formado, con un porcentaje o un grupo concreto si es posible.</span></div>
+        <div><span><b>Dos ejemplos.</b> Situación, lo que hice y lo que cambió. Un ejemplo de liderazgo vale más que tres adjetivos.</span></div>
+        <div><span><b>Por qué este programa, ahora.</b> Por qué mi siguiente paso es de liderazgo y decisión pública, y qué aportaría a una cohorte de profesionales con experiencia.</span></div>
+        <div><span><b>La recomendación.</b> Una frase final clara y sin reservas.</span></div>
+      </div>
+      <p class="muted" style="margin-top:12px">Entre una y dos páginas, en papel membretado si es posible. Una carta base sirve para todas las universidades: basta con ajustar el nombre del programa y el último párrafo.</p>
+    </div>
+    <div>
+      <h3>Lo que conviene evitar</h3>
+      <ul class="no">
+        <li>Listas de herramientas o métodos (Python, Stata, econometría). El comité ya los ve en el CV, y refuerzan la imagen de perfil técnico.</li>
+        <li>Repetir el CV en prosa. La carta vale por lo que solo usted vio.</li>
+        <li>Elogios genéricos sin ejemplo ("muy inteligente", "excelente profesional").</li>
+        <li>En las cartas para programas profesionales (Princeton, Cornell, Michigan), presentar la maestría como un paso hacia el doctorado. En los de demografía (LSE, Oxford) sí conviene resaltar la capacidad de investigación.</li>
+        <li>Temas personales o familiares. Los trato yo en mis ensayos.</li>
+      </ul>
+      <h3 style="margin-top:18px">Lo que más ayuda</h3>
+      <ul>
+        <li>Un momento en que usted me vio liderar o convencer a otros.</li>
+        <li>El impacto de mi trabajo en personas o decisiones, más que en indicadores.</li>
+        <li>Mi evolución en el tiempo, si me conoce desde hace varios años.</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<section class="band" id="ingles"><div class="wrap">
+  <h2>Lenguaje en inglés coherente con mis ensayos</h2>
+  <p>No es un texto para copiar. Son las ideas y palabras que uso en mis ensayos; si su carta las retoma con su propia voz, el comité lee una candidatura coherente.</p>
+  <div class="two">
+    <div class="phr" id="phr1"></div>
+    <div class="phr" id="phr2"></div>
+  </div>
+</div></section>
+
+<section class="band alt" id="universidades"><div class="wrap">
+  <h2>Universidades y fechas</h2>
+  <p>Aplico a programas de políticas públicas y de demografía, todos en escuelas con un centro de estudios de población.</p>
+  <div class="scroll">
+    <table class="ev stack" id="uni"></table>
+  </div>
+  <p class="muted" style="margin-top:10px">Requisitos revisados el 22 de noviembre de 2026 en las páginas oficiales. Lo marcado "por confirmar" se verifica en cada portal y se lo aviso.</p>
+
+</div></section>
+
+<script>
+{
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const EV=[
+ ["Liderazgo","Analista Jefe de Transformación Digital y Estrategia de Datos del PNUD Colombia; dirige la estrategia de datos de la oficina en cuatro áreas: pobreza y desigualdad, desarrollo sostenible, gobernanza y paz.","Responde a la duda de perfil técnico"],
+ ["Liderazgo","Lideró el equipo de datos del Informe Nacional de Desarrollo Humano de Colombia 2024: indicadores, control de calidad, análisis territorial y visualizaciones.","Un producto nacional con su firma"],
+ ["Decisión pública","Microsimulación de la pobreza, la focalización y el costo fiscal de las medidas de protección social de Bogotá.","El puente entre análisis y política"],
+ ["Población","Nueve análisis de ciudad sobre migrantes venezolanos, hogares, mercado laboral y empresas (2021).","El hilo demográfico en la práctica"],
+ ["Estadística oficial","DANE durante la pandemia: Gran Encuesta Integrada de Hogares, la fuente oficial de empleo e informalidad.","Base para la meta de dirigir el DANE"],
+ ["Alcance internacional","Red Global de Data Champions del PNUD. Trabajo con oficinas del PNUD de toda América Latina y de África; talleres de microsimulación para oficinas del PNUD en el mundo; coorganización del World Data Forum.","Pensamiento comparado, más allá de Colombia"],
+ ["Innovación","Data Driven Business, metodología para medir la madurez digital y de datos de las empresas, presentada en el World Data Forum. Medición de pobreza multidimensional publicada con OPHI.","Creación de herramientas que otros usan"],
+ ["Formación","MSc en Gerencia para el Desarrollo con distinción. MSc en Economía con cursos terminados y tesis en curso sobre envejecimiento.","Explica por qué no necesita otra maestría técnica"],
+ ["Docencia","Profesor de economía en el Externado (2018 a 2020), asistente de investigación (2014 a 2017) y monitor reconocido como el mejor por evaluación de los estudiantes. Comité evaluador de la Revista de Economía Institucional.","Muestra que forma a otros y que su trayectoria empieza en 2014"],
+ ["Alianzas académicas","Lidera la medición colombiana del Índice de Relacionamiento con la Naturaleza con la Ford School de la Universidad de Michigan, en coordinación con HDRO.","Trabajo de igual a igual con universidades de primer nivel"],
+ ["Comunidad","Director de la revista Divergencia de la Facultad de Economía y creador de Radio Divergencia. Convoca la Comunidad de Datos del PNUD Colombia.","Liderazgo temprano y aporte a una cohorte"]
+];
+document.getElementById("ev").innerHTML="<thead><tr><th>Competencia</th><th>Evidencia</th><th>Para qué le sirve al comité</th></tr></thead><tbody>"+EV.map(e=>`<tr><th>${esc(e[0])}</th><td data-l="Evidencia">${esc(e[1])}</td><td class="use" data-l="Para qué sirve">${esc(e[2])}</td></tr>`).join("")+"</tbody>";
+const P1=["from producing evidence to shaping the decisions that act on it","policies designed for a population that ages, migrates and responds to incentives","a leader who organizes people, methods and institutions around decisions","the bridge between economists, data scientists and decision-makers"];
+const P2=["his next step is a leadership step, not further technical specialization","he has already moved from conducting analysis to leading a strategy","he listens to the people affected by policy, not only to the data","he would bring a practitioner's view from national statistics and the UN system"];
+const row=t=>`<div><span>${esc(t)}</span><button type="button" data-t="${esc(t)}">Copiar</button></div>`;
+document.getElementById("phr1").innerHTML="<h3 style='padding:10px 0 0'>Sobre la idea</h3>"+P1.map(row).join("");
+document.getElementById("phr2").innerHTML="<h3 style='padding:10px 0 0'>Sobre la persona</h3>"+P2.map(row).join("");
+document.querySelectorAll(".phr button").forEach(b=>b.addEventListener("click",()=>{try{navigator.clipboard.writeText(b.dataset.t).then(()=>{b.textContent="Copiado";setTimeout(()=>b.textContent="Copiar",1500)},()=>{})}catch(e){}}));
+const U=[
+ ["Princeton SPIA, Master in Public Policy","Un año","Tres: profesional, académica y de servicio público; una adicional por correo a admisiones","1 dic. 2026","28 nov. 2026","Office of Population Research"],
+ ["Cornell Brooks School, MPA","Opción de un año por confirmar","Dos, académicas o profesionales","15 ene. 2027, por confirmar","10 ene. 2027","Cornell Population Center"],
+ ["Michigan Ford School, Master of Public Affairs","Un año","Dos: una académica y una profesional; admite una tercera","Por confirmar","10 ene. 2027","Population Studies Center"],
+ ["LSE, Department of Methodology (demografía): MSc Social Research Methods","Un año","Por confirmar en el portal","Admisión continua; 13 ene. 2027 para becas de demografía (ESRC)","6 ene. 2027","Demografía, Department of Methodology"],
+ ["Oxford, MPhil in Sociology and Demography","21 meses","Por confirmar en el portal","7 ene. 2027, 12:00 m. hora del Reino Unido","20 dic. 2026","Leverhulme Centre for Demographic Science"]
+];
+const H=["Programa","Duración","Cartas","Fecha de la universidad","Carta lista","Centro de población"];
+document.getElementById("uni").innerHTML="<thead><tr>"+H.map(h=>`<th>${h}</th>`).join("")+"</tr></thead><tbody>"+U.map(u=>"<tr>"+u.map((c,i)=>i===0?`<th>${esc(c)}</th>`:`<td data-l="${H[i]}"${i===4?' style="color:var(--brick);font-weight:700;white-space:nowrap"':''}>${esc(c)}</td>`).join("")+"</tr>").join("")+"</tbody>";
+}
+</script>
+</body>
+</html>
